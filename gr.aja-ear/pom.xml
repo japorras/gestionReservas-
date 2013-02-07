@@ -1,0 +1,156 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+   xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
+   <modelVersion>4.0.0</modelVersion>
+
+   <parent>
+      <artifactId>gr.aja</artifactId>
+      <groupId>gr.trade.com</groupId>
+      <version>1.0-SNAPSHOT</version>
+   </parent>
+
+   <artifactId>gr.aja-ear</artifactId>
+   <packaging>ear</packaging>
+
+   <name>gr.aja EAR module</name>
+
+   <dependencies>
+
+      <!-- Depend on the ejb module and war so that we can package them -->
+     <dependency>
+         <groupId>gr.trade.com</groupId>
+         <artifactId>gr.aja-web</artifactId>
+         <type>war</type>
+      </dependency>
+      <dependency>
+         <groupId>gr.trade.com</groupId>
+         <artifactId>gr.aja-ws</artifactId>
+         <type>war</type>
+		 <version>1.0-SNAPSHOT</version><!--$NO-MVN-MAN-VER$-->
+      </dependency>
+	  
+	  <dependency>
+         <groupId>gr.trade.com</groupId>
+         <artifactId>gr.aja-entities</artifactId>
+         <type>jar</type>
+		 <version>1.0-SNAPSHOT</version><!--$NO-MVN-MAN-VER$-->
+      </dependency>
+	  
+       <dependency>
+      	<groupId>org.apache.xbean</groupId>
+      	<artifactId>xbean-spring</artifactId>
+      	<version>3.4.3</version><!--$NO-MVN-MAN-VER$-->
+		
+       </dependency>
+	  
+	   <dependency>
+		<groupId>org.springframework</groupId>
+		<artifactId>spring</artifactId>
+		<version>2.5.6</version><!--$NO-MVN-MAN-VER$-->
+	   </dependency>
+	  
+	  <dependency>
+		<groupId>org.jvnet.jax-ws-commons.spring</groupId>
+		<artifactId>jaxws-spring</artifactId>
+		<version>1.8</version><!--$NO-MVN-MAN-VER$-->
+		
+		<exclusions>
+		  <exclusion>
+           		<groupId>org.springframework</groupId>
+      			<artifactId>spring-core</artifactId>
+        	  </exclusion>
+        	  <exclusion>
+           		<groupId>org.springframework</groupId>
+      			<artifactId>spring-context</artifactId>
+        	  </exclusion>
+        	  <exclusion>
+           		<groupId>com.sun.xml.stream.buffer</groupId>
+      			<artifactId>streambuffer</artifactId>
+        	  </exclusion>
+        	  <exclusion>
+           		<groupId>org.jvnet.staxex</groupId>
+      			<artifactId>stax-ex</artifactId>
+        	  </exclusion>
+		</exclusions>
+	</dependency>
+	  
+	  
+	  <dependency>
+	  		<groupId>com.sun.xml.ws</groupId>
+	       	<artifactId>jaxws-rt</artifactId>
+	       	<version>2.2.3</version>
+	       	
+      </dependency>
+       	
+		
+	  
+   </dependencies>
+
+   <build>
+	   
+      <finalName>gr.aja</finalName>
+      <plugins>
+         <plugin>
+			
+            <groupId>org.apache.maven.plugins</groupId>
+            <artifactId>maven-ear-plugin</artifactId>
+            <version>2.6</version>
+            <configuration>
+				<defaultLibBundleDir>lib/</defaultLibBundleDir>
+               <!-- Tell Maven we are using Java EE 6 -->
+               <version>6</version>
+               <!-- Use Java EE ear libraries as needed. Java EE ear libraries 
+                  are in easy way to package any libraries needed in the ear, and automatically 
+                  have any modules (EJB-JARs and WARs) use them -->
+			    <modules>
+                  <!-- Register our War as a web module, and set the context 
+                     root -->
+                  <webModule>
+                     <groupId>gr.trade.com</groupId>
+                     <artifactId>gr.aja-ws</artifactId>
+                     <contextRoot>/gr.ws</contextRoot>
+                     
+                     <!-- Define the context root for the webapp -->
+                  </webModule>
+               </modules>
+			  
+               <modules>
+                  <!-- Register our War as a web module, and set the context 
+                     root -->
+                  <webModule>
+                     <groupId>gr.trade.com</groupId>
+                     <artifactId>gr.aja-web</artifactId>-->
+                     <!-- Define the context root for the webapp -->
+                     <contextRoot>/gr.aja</contextRoot>
+					 
+                  </webModule>
+               </modules>
+			   
+			  
+			   
+			   
+			   <modules>
+					<jarModule>
+					<groupId>gr.trade.com</groupId>
+					<artifactId>gr.aja-entities</artifactId>
+					
+					</jarModule>
+				</modules>
+				
+            </configuration>
+         </plugin>
+         <!-- The JBoss AS plugin deploys your ear to a local JBoss AS container -->
+         <!-- Due to Maven's lack of intelligence with EARs we need to configure 
+            the jboss-as maven plugin to skip deployment for all modules. We then enable 
+            it specifically in the ear module. -->
+         <plugin>
+            <groupId>org.jboss.as.plugins</groupId>
+            <artifactId>jboss-as-maven-plugin</artifactId>
+            <configuration>
+               <skip>false</skip>
+            </configuration>
+         </plugin>
+      </plugins>
+   </build>
+
+</project>

@@ -1,0 +1,114 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+   xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
+   <modelVersion>4.0.0</modelVersion>
+
+   <parent>
+      <artifactId>gr.aja</artifactId>
+      <groupId>gr.trade.com</groupId>
+      <version>1.0-SNAPSHOT</version>
+   </parent>
+
+   <artifactId>gr.aja-ws</artifactId>
+   <packaging>war</packaging>
+   
+	
+   <name>gr.aja WebServices module</name>
+   <dependencies>
+		<dependency>
+		<groupId>org.springframework</groupId>
+		<artifactId>spring</artifactId>
+		<version>2.5.6</version><!--$NO-MVN-MAN-VER$-->
+	   </dependency>
+	   
+		<dependency>
+			<groupId>org.jvnet.jax-ws-commons.spring</groupId>
+			<artifactId>jaxws-spring</artifactId>
+			<version>1.8</version><!--$NO-MVN-MAN-VER$-->
+		
+		   <exclusions>
+		  	<exclusion>
+           		<groupId>org.springframework</groupId>
+      			<artifactId>spring-core</artifactId>
+        	  </exclusion>
+        	  <exclusion>
+           		<groupId>org.springframework</groupId>
+      			<artifactId>spring-context</artifactId>
+        	  </exclusion>
+        	  <exclusion>
+           		<groupId>com.sun.xml.stream.buffer</groupId>
+      			<artifactId>streambuffer</artifactId>
+        	  </exclusion>
+        	  <exclusion>
+           		<groupId>org.jvnet.staxex</groupId>
+      			<artifactId>stax-ex</artifactId>
+        	  </exclusion>
+			</exclusions>
+		</dependency>
+		<dependency>
+			<groupId>org.apache.xbean</groupId>
+			<artifactId>xbean-spring</artifactId>
+			<version>3.4.3</version><!--$NO-MVN-MAN-VER$-->
+       </dependency>
+	   
+	   <dependency>
+	  		<groupId>com.sun.xml.ws</groupId>
+	       	<artifactId>jaxws-rt</artifactId>
+	       	<version>2.2.3</version>
+	       	
+      </dependency>
+	   
+   </dependencies>    
+   
+   <build>
+       <outputDirectory>${project.build.directory}/classes</outputDirectory>
+       
+      <plugins>
+          
+          <plugin>
+			<artifactId>maven-war-plugin</artifactId>
+			<version>2.3</version>
+			<configuration>
+          <!-- In version 2.1-alpha-1, this was incorrectly named warSourceExcludes -->
+				<packagingExcludes>WEB-INF/lib/*.jar</packagingExcludes>
+				<archive>
+					<manifest>
+						<addClasspath>true</addClasspath>
+						<classpathPrefix>lib/</classpathPrefix>
+					</manifest>
+				</archive>
+			</configuration>
+     	</plugin>
+          
+
+        <plugin>
+             <groupId>org.codehaus.mojo</groupId>
+                <artifactId>jaxws-maven-plugin</artifactId>
+             	<version>1.10</version>
+             	<executions>
+                <execution>
+                    <id>ReservarArticuloWS</id>
+                    <configuration>
+                        <source>1.6</source>
+		      			<target>1.6</target>
+                        <sei>gr.trade.com.ws.ReservarArticuloWS</sei>
+                        <genWsdl>true</genWsdl>
+                        <keep>true</keep>
+                        <verbose>true</verbose>
+                        <destDir>src/main/java</destDir>
+                        <xnocompile>true</xnocompile>
+                    </configuration>
+                    <phase>test</phase>
+                    <goals>
+                        <goal>wsgen</goal>
+                    </goals>
+                </execution>
+                
+            </executions> 
+             
+         </plugin>
+         
+      </plugins>
+   </build>
+
+</project>

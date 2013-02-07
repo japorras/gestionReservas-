@@ -1,0 +1,28 @@
+1.- Instalar jdk 1.6 de java.
+2.- Establecer variable de entorno JAVA_HOME y añadir la ruta del directorio bin sobre el path del sistema.
+2.- Instalar MAVEN sobre directorio local. Desempaquetar la distribución binaria de maven sobre algún directorio del sistema.
+3.- Establecer variables de entorno para maven M2_HOME y M2.
+4.- Instalar JBOSS 7.0.1 desempaquetando la distribución binaria de JBoss sobre algún directorio del sistema. 
+5.- Establecer la variable de entorno del sistema para JBOSS_HOME apuntando  donde se encuentra ubicado el desempaquetado de JBOSS.
+6.- Modificar el fichero variables_gr.properties con la variable workspace apuntando a nuestro directorio de trabajo.
+
+
+HERRAMIENTA INTEGRACION CONTINUA
+================================
+
+1.- Cuando se desee lanzar la herramienta de integración continua sobre local, será necesario lanzar el bat startIntegration.bat
+2.- Una vez lanzado dicho bat, esperar a que la ventana que tiene el foco muestre la frase "pulse para continuar......", 
+en ese momento, seleccionamos la pantalla "Integracion Continua Gestion Reservas" que se encuentra justamente 
+detras y pulsamos cualquier boton. Con esto hemos completado el ciclo de integración. 
+3.- Esta herramienta de integración se apoya en MAVEN para ser completada y consta de las siguientes fases:
+		
+		- Levanta el servidor, si este no esta levantado
+		- compila y empaqueta el proyecto
+		- despliega en el servidor el proyecto
+		- elimina el despliegue del proyecto sobre el servidor
+		- Tirar el servidor
+4.- Para evaluar el correcto funcionamiento de la herramienta de integración continua son creado varios
+fichero log (sobre el directorio salidaIntegracion del proyecto) que muestran de forma individual las fases de:
+	contrucción-empaquetado --> buildproject.log 
+	despliegue --> deployEAR.log
+	eliminación	de despliegue --> undeployEAR.log		
