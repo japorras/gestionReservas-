@@ -17,6 +17,7 @@
 
    <properties>
       <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+	  <name.module.ws>gr.aja-ws</name.module.ws> 
    </properties>
 
    <dependencyManagement>

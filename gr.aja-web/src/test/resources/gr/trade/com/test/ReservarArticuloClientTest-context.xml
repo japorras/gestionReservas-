@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans-2.5.xsd">
+	
+	<!--  <bean id="reserva" class="org.springframework.remoting.jaxws.JaxWsPortProxyFactoryBean">
+        <property name="serviceInterface" value="gr.trade.com.ws.IReservarArticulo" />
+        <property name="wsdlDocumentUrl" value="http://localhost:8080/gr.aja-ws/webservices/reservarArticulo?wsdl" />
+        <property name="namespaceUri" value="http://ws.com.trade.gr/" />
+        <property name="serviceName" value="ReservarArticuloWS" />
+        <property name="endpointAddress" value="http://localhost:8080/gr.aja-ws/webservices/reservarArticulo" />
+    </bean>-->
+	
+</beans>
