@@ -8,7 +8,7 @@ import javax.annotation.Resource;
 public class ReservarArticuloClient {
 
 	@Resource
-	IReservarArticulo reserva;
+	IReservarArticulo reserva; 
 	
 	public void setReserva(IReservarArticulo reserva) {
 		this.reserva = reserva;
@@ -16,10 +16,10 @@ public class ReservarArticuloClient {
 
 
 
-	public String reservarArticulo (String codigo)
+	public Integer reservarArticulo (Integer number1, Integer number2)
 	{
 		
-		String resultado = reserva.reservarArticulo(codigo);
+		Integer resultado = reserva.reservarArticulo(number1, number2);
 		return resultado;
 	}
 	

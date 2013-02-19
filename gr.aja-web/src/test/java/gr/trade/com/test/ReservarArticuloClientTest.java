@@ -2,7 +2,7 @@ package gr.trade.com.test;
 
 import static org.mockito.Mockito.when;
 import gr.trade.com.rest.ReservarArticuloClient;
-import gr.trade.com.ws.IReservarArticulo;
+//import gr.trade.com.ws.IReservarArticulo;
 import junit.framework.Assert;
 
 import org.junit.Before;
@@ -22,14 +22,15 @@ public class ReservarArticuloClientTest {
 		reservarArticuloClient = org.mockito.Mockito.mock(ReservarArticuloClient.class);
 		//ReservarArticuloResponse response = new ReservarArticuloResponse();
 		//response.setReturn("articulo ha sido reservado");
-		when(reservarArticuloClient.reservarArticulo("1")).thenReturn("articulo ha sido reservado");
+		when(reservarArticuloClient.reservarArticulo(new Integer(1), new Integer(2))).thenReturn(new Integer(3));
 		
 	}
 	
 	@Test
 	public void test() {
 		
-		Assert.assertEquals("articulo ha sido reservado", reservarArticuloClient.reservarArticulo("1"));
+		Assert.assertEquals(new Integer(3), reservarArticuloClient.reservarArticulo(new Integer("1"),
+				new Integer(2)));
 	}
 
 }

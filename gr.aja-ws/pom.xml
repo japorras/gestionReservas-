@@ -17,11 +17,11 @@
    <dependencies>
 		<dependency>
 		<groupId>org.springframework</groupId>
-		<artifactId>spring</artifactId>
-		<version>2.5.6</version><!--$NO-MVN-MAN-VER$-->
+		<artifactId>spring-context</artifactId>
+		<version>${org.springframework.version}</version><!--$NO-MVN-MAN-VER$-->
 	   </dependency>
 	   
-		<dependency>
+	 <dependency>
 			<groupId>org.jvnet.jax-ws-commons.spring</groupId>
 			<artifactId>jaxws-spring</artifactId>
 			<version>1.8</version><!--$NO-MVN-MAN-VER$-->
@@ -30,6 +30,10 @@
 		  	<exclusion>
            		<groupId>org.springframework</groupId>
       			<artifactId>spring-core</artifactId>
+        	  </exclusion>
+			  <exclusion>
+           		<groupId>org.springframework</groupId>
+      			<artifactId>spring</artifactId>
         	  </exclusion>
         	  <exclusion>
            		<groupId>org.springframework</groupId>
@@ -44,19 +48,7 @@
       			<artifactId>stax-ex</artifactId>
         	  </exclusion>
 			</exclusions>
-		</dependency>
-		<dependency>
-			<groupId>org.apache.xbean</groupId>
-			<artifactId>xbean-spring</artifactId>
-			<version>3.4.3</version><!--$NO-MVN-MAN-VER$-->
-       </dependency>
-	   
-	   <dependency>
-	  		<groupId>com.sun.xml.ws</groupId>
-	       	<artifactId>jaxws-rt</artifactId>
-	       	<version>2.2.3</version>
-	       	
-      </dependency>
+		</dependency>  
 	   
    </dependencies>    
    
@@ -80,8 +72,7 @@
 			</configuration>
      	</plugin>
           
-
-        <plugin>
+		<plugin>
              <groupId>org.codehaus.mojo</groupId>
                 <artifactId>jaxws-maven-plugin</artifactId>
              	<version>1.10</version>
@@ -107,6 +98,7 @@
             </executions> 
              
          </plugin>
+        
          
       </plugins>
    </build>

@@ -12,6 +12,7 @@ import javax.jws.soap.SOAPBinding.Use;
 public interface IReservarArticulo {
 	
 	@WebMethod
-	public String reservarArticulo(@WebParam(name="codigo") String codigo);
+	public Integer reservarArticulo(@WebParam(name="number1") Integer number1,
+			@WebParam(name="number2")Integer number2);
 	
 }

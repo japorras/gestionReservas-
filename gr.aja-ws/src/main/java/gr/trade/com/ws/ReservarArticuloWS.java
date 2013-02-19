@@ -1,21 +1,20 @@
 package gr.trade.com.ws;
 
-import gr.trade.com.ws.interfaces.IReservarArticulo;
 
 import javax.jws.WebService;
-
 import org.springframework.stereotype.Service;
 
 @WebService(endpointInterface="gr.trade.com.ws.interfaces.IReservarArticulo", 
 	serviceName="ReservarArticuloWS")
 @Service
-public class ReservarArticuloWS implements IReservarArticulo{
+public class ReservarArticuloWS{
 	
 	
 	
-	public String reservarArticulo(String codigo)
+	public Integer reservarArticulo(Integer number1, Integer number2)
 	{
-		return "articulo ha sido reservado";
+		Integer resultado = number1 + number2;
+		return resultado;
 		
 	}
 	

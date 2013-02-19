@@ -43,42 +43,42 @@
      <dependency>
         <groupId>org.springframework</groupId>
         <artifactId>spring-context</artifactId>
-        <version>2.5.6</version>
-        <scope>test</scope>
+        <version>${org.springframework.version}</version>
+        
     </dependency>
 
     <dependency>
         <groupId>org.springframework</groupId>
         <artifactId>spring-test</artifactId>
-        <version>2.5.6</version>
-        <scope>test</scope>
+        <version>${org.springframework.version}</version>
+        
     </dependency>
 
     <dependency>
         <groupId>org.springframework</groupId>
         <artifactId>spring-beans</artifactId>
-        <version>2.5.6</version>
-        <scope>test</scope>
+        <version>${org.springframework.version}</version>
+        
     </dependency>
 
     <dependency>
         <groupId>org.springframework</groupId>
         <artifactId>spring-core</artifactId>
-        <version>2.5.6</version>
-        <scope>test</scope>
+        <version>${org.springframework.version}</version>
+        
     </dependency>
 	
 	<dependency>
         <groupId>org.springframework</groupId>
         <artifactId>spring-web</artifactId>
-        <version>2.5.6</version>
-        <scope>test</scope>
+        <version>${org.springframework.version}</version>
+        
     </dependency>
 	  
 	  <dependency>
       <groupId>junit</groupId>
       <artifactId>junit</artifactId>
-      <version>4.4</version>
+      <version>4.8.1</version>
       <scope>test</scope>
 	  </dependency>
       
@@ -102,9 +102,38 @@
 			<version>1.7</version>
 			<scope>test</scope>
 	  </dependency>
-            
+	  
+      <dependency>
+		<groupId>org.springframework</groupId>
+		<artifactId>spring-webmvc</artifactId>
+		<version>${org.springframework.version}</version>
+		<exclusions>
+			  <exclusion>
+           		<groupId>org.springframework</groupId>
+      			<artifactId>spring-core</artifactId>
+        	  </exclusion>
+        	  <exclusion>
+           		<groupId>org.springframework</groupId>
+      			<artifactId>spring-context</artifactId>
+        	  </exclusion>
+        	  <exclusion>
+           		<groupId>org.springframework</groupId>
+      			<artifactId>spring-beans</artifactId>
+    		  </exclusion>	  
+    		  <exclusion>
+           		<groupId>org.springframework</groupId>
+      			<artifactId>spring-context-support</artifactId>
+    		  </exclusion>
+        </exclusions>
+        
+	  </dependency>
+	  <dependency>
+    	<groupId>org.codehaus.jackson</groupId>
+    	<artifactId>jackson-jaxrs</artifactId>
+    	<version>1.6.3</version>
+    	<type>jar</type>
+    </dependency>
       
-      	
       <!-- Import the JPA API, we use provided scope as the API is included 
          in JBoss AS 7 -->
       <!--<dependency>
@@ -117,15 +146,7 @@
 
    <build>
       <plugins>
-         <plugin>
-            <artifactId>maven-war-plugin</artifactId>
-            <version>2.1.1</version>
-            <configuration>
-               <!-- Java EE 6 doesn't require web.xml, Maven needs to catch 
-                  up! -->
-               <failOnMissingWebXml>false</failOnMissingWebXml>
-            </configuration>
-         </plugin>
+         
 		 <plugin>
             <groupId>org.codehaus.mojo</groupId>
             <artifactId>jaxws-maven-plugin</artifactId>
@@ -191,6 +212,57 @@
       				</lifecycleMappingMetadata>
       			</configuration>
       		</plugin>
+      		
+      		<plugin> 
+              	<groupId>org.apache.maven.plugins</groupId> 
+        	  	<artifactId>maven-resources-plugin</artifactId> 
+                <executions> 
+                	<execution> 
+                       <phase>compile</phase> 
+                       <goals> 
+        					<goal>copy-resources</goal> 
+                       </goals> 
+                       <configuration> 
+	        				<outputDirectory>${project.build.directory}/wsdl</outputDirectory> 
+    	                    <resources> 
+                                 <resource> 
+        							<directory>${basedir}/../${name.module.ws}/target/jaxws/wsgen/wsdl/</directory> 
+        							<filtering>false</filtering> 
+                                 </resource> 
+                            </resources> 
+				       </configuration> 
+                   </execution> 
+                 </executions> 
+             </plugin>
+             
+      		 <plugin>
+            <artifactId>maven-war-plugin</artifactId>
+            <version>2.1.1</version>
+            <configuration>
+               <!-- Java EE 6 doesn't require web.xml, Maven needs to catch 
+                  up! -->
+          	<!-- In version 2.1-alpha-1, this was incorrectly named warSourceExcludes -->
+				<packagingExcludes>WEB-INF/lib/*.jar</packagingExcludes>
+				<archive>
+					<manifest>
+						<addClasspath>true</addClasspath>
+						<classpathPrefix>lib/</classpathPrefix>
+					</manifest>
+				</archive>  
+				<webResources>
+            		<resource>
+             		 <!-- this is relative to the pom.xml directory -->
+              			<directory>\target\wsdl</directory>
+              			<targetPath>/resources/</targetPath>
+              			<includes>
+                			<include>**/*.*</include>
+              			</includes>
+            		</resource>
+          		</webResources>
+               <failOnMissingWebXml>false</failOnMissingWebXml>
+            </configuration>
+         </plugin>
+      		
       	</plugins>
       </pluginManagement>
    </build>
