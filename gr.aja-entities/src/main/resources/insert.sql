@@ -1,0 +1,8 @@
+INSERT INTO COMPANY (ID, NAME, DESCRIPTION) VALUES (1, "PADDEL CLUB GRA", "Club de paddel de Valdemoro");
+INSERT INTO COMPANY (ID, NAME, DESCRIPTION) VALUES (2, "DEPORTES HALCON", "Tienda de ropa deportiva");
+
+INSERT INTO WORKER (ID, COMPANY_ID, NAME, SURNAME, WORKERTYPE) VALUES (1, 1, "Juan Pablo", "Perez Garcia", "dependiente");
+INSERT INTO WORKER (ID, COMPANY_ID, NAME, SURNAME, WORKERTYPE) VALUES (2, 1, "Pedro", "Gimenez Sanchez", "Camarero");
+
+INSERT INTO WORKER (ID, COMPANY_ID, NAME, SURNAME, WORKERTYPE) VALUES (3, 2, "Pablo", "Perez Garcia", "dependiente");
+INSERT INTO WORKER (ID, COMPANY_ID, NAME, SURNAME, WORKERTYPE) VALUES (4, 2, "Carlos", "Pulido Sanchez", "Supervisor");
