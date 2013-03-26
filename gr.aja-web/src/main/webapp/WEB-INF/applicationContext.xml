@@ -20,20 +20,25 @@
         <property name="endpointAddress" value="http://localhost:8080/gr.aja-ws/webservices/reservarArticulo" />
     </bean>
 	
+   
+   <bean id="logonuser" class="org.springframework.remoting.jaxws.JaxWsPortProxyFactoryBean">
+        <property name="serviceInterface" value="gr.trade.com.ws.ILogonUser" />
+        <property name="wsdlDocumentUrl" value="resources/LogonUserWS.wsdl" />
+        <property name="namespaceUri" value="http://ws.com.trade.gr/" />
+        <property name="serviceName" value="LogonUserWS" />
+        <property name="endpointAddress" value="http://localhost:8080/gr.aja-ws/webservices/logonUser" />
+    </bean>
     
    
     <bean id="reservarArticuloClient" class="gr.trade.com.rest.ReservarArticuloClient" />
     
+    <bean id="logonUserClient" class="gr.trade.com.rest.LoginUserClient" />
+    
     <!-- Activates various annotations to be detected in bean classes -->
  	<context:annotation-config />
   
- 	<!-- Scans the classpath for annotated components that will be auto-registered as Spring beans.
-  	For example @Controller and @Service. Make sure to set the correct base-package-->
- 	<!-- <context:component-scan base-package="gr.trade.com" />-->
-    <context:component-scan base-package="gr.trade.com" /> 
+ 	 
  	
- 	<!-- Configures the annotation-driven Spring MVC Controller programming model.
- 	Note that, with Spring 3.0, this tag works in Servlet MVC only!  -->
- 	<mvc:annotation-driven />
+ 	
     
 </beans>

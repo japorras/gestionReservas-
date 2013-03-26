@@ -183,6 +183,23 @@
                         <goal>wsgen</goal>
                     </goals>
                 </execution>
+                <execution>
+                    <id>LogonUserWS</id>
+                    <configuration>
+                        <source>1.6</source>
+		      			<target>1.6</target>
+                        <sei>gr.trade.com.ws.LogonUserWS</sei>
+                        <genWsdl>true</genWsdl>
+                        <keep>true</keep>
+                        <verbose>true</verbose>
+                        <destDir>src/main/java</destDir>
+                        <xnocompile>true</xnocompile>
+                    </configuration>
+                    <phase>test</phase>
+                    <goals>
+                        <goal>wsgen</goal>
+                    </goals>
+                </execution>
                 
             </executions> 
              

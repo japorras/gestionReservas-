@@ -47,7 +47,6 @@
         <groupId>org.springframework</groupId>
         <artifactId>spring-context</artifactId>
         <version>${org.springframework.version}</version>
-        
     </dependency>
 
     <dependency>
@@ -138,13 +137,40 @@
         </exclusions>
         
 	  </dependency>
-	  <dependency>
+	<dependency>
     	<groupId>org.codehaus.jackson</groupId>
     	<artifactId>jackson-jaxrs</artifactId>
     	<version>1.6.3</version>
     	<type>jar</type>
     </dependency>
+    
+    <!-- Spring Security -->
+    
+	<dependency>
+		<groupId>org.springframework.security</groupId>
+		<artifactId>spring-security-core</artifactId>
+		<version>${org.springframework.version}</version>
+	</dependency>
+ 
+	<dependency>
+		<groupId>org.springframework.security</groupId>
+		<artifactId>spring-security-web</artifactId>
+		<version>${org.springframework.version}</version>
+	</dependency>
+ 
+	<dependency>
+		<groupId>org.springframework.security</groupId>
+		<artifactId>spring-security-config</artifactId>
+		<version>${org.springframework.version}</version>
+	</dependency>  
+	  
       
+	<dependency>
+		<groupId>jstl</groupId>
+		<artifactId>jstl</artifactId>
+		<version>1.2</version>
+	</dependency>
+	
       <!-- Import the JPA API, we use provided scope as the API is included 
          in JBoss AS 7 -->
       <!--<dependency>
@@ -171,9 +197,10 @@
             </executions>
             <configuration>
                 <wsdlDirectory>${basedir}/../${name.module.ws}/target/jaxws/wsgen/wsdl/</wsdlDirectory>
-				<wsdlFiles>
+                <wsdlFiles>
                         <wsdlFile>ReservarArticuloWS.wsdl</wsdlFile>
-                </wsdlFiles>
+                        <wsdlFile>LogonUserWS.wsdl</wsdlFile>
+                </wsdlFiles>				
             </configuration>
         </plugin>
 		 <plugin> 

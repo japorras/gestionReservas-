@@ -20,8 +20,6 @@
     		http://www.springframework.org/schema/data/jpa
     		http://www.springframework.org/schema/data/jpa/spring-jpa-1.3.xsd"> 
     	
-    	<import resource="classpath*:/gr.aja-entities-1.0-SNAPSHOT.jar/applicationContext.xml"/>
-    	
     	<tx:annotation-driven />
 		<wss:binding url="/webservices/reservarArticulo">
 	      <wss:service>
@@ -32,4 +30,13 @@
 		
         <bean id="reservarArticuloWS" class="gr.trade.com.ws.ReservarArticuloWS"/>
     	
+        <wss:binding url="/webservices/logonUser">
+	      <wss:service>
+	         <ws:service bean="#logonUserWS">            
+	         </ws:service>
+         </wss:service>
+       </wss:binding>
+		
+        <bean id="logonUserWS" class="gr.trade.com.ws.LogonUserWS"/>
+        
 </beans>
